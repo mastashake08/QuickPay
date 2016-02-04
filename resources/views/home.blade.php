@@ -8,7 +8,9 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    Share your personal link so anyone in the world can send you money!
+                    <br>
+                    <h2><a target="_blank" href="{{url(Auth::user()->slug)}}">{{url(Auth::user()->slug)}}</a></h2>
                 </div>
             </div>
         </div>
