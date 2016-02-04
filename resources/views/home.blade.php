@@ -22,7 +22,7 @@
                 <div class="panel-heading">Payments</div>
 
                 <div class="panel-body">
-                    You have made ${{Auth::user()->charges->sum('amount')}}
+                    You have made ${{Auth::user()->charges->sum('amount')}} over the lifetime of your account.
                 </div>
             </div>
         </div>
