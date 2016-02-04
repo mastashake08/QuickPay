@@ -14,9 +14,9 @@ class CreateChargesTable extends Migration
     {
         Schema::create('charges', function (Blueprint $table) {
             $table->increments('id');
-	    $table->integer('user_id')->unsigned();
-	    $table->foreign('user_id')->references('id')->on('users');
-	    $table->decimal('amount',5,2);
+	          $table->integer('user_id')->unsigned();
+	          $table->foreign('user_id')->references('id')->on('users');
+	          $table->decimal('amount',5,2);
             $table->timestamps();
         });
     }
