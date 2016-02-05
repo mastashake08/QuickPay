@@ -39,7 +39,7 @@ class StripeController extends Controller
             'user_id' => $user->id,
             'amount' => $amount
           ]);
-          event(new App\Events\ChargeSucceeded($request->email, $user));
+          event(new \App\Events\ChargeSucceeded($request->email, $user));
             return response()->json(['status' => 'Payment Succeeded!']);
       } catch(\Stripe\Error\Card $e) {
         // The card has been declined
