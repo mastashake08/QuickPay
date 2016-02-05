@@ -32,7 +32,7 @@ class ChargeSucceededListener implements ShouldQueue
         $this->mailer->send('emails.newCharge',$event, function ($message) use($event)  {
           $message->from('payments@quikpay.me', env('APP_TITLE'));
 
-          $message->to($event->user->email)->subject('You Made Money!');
+          $message->to($event->user->email,$event->user->name)->subject('You Made Money!');
         });
 
     }

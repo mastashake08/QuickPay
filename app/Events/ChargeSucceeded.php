@@ -30,6 +30,6 @@ class ChargeSucceeded extends Event
      */
     public function broadcastOn()
     {
-        return ['money-madeus'];
+        return ['money-made'];
     }
 }
