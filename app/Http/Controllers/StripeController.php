@@ -20,11 +20,13 @@ class StripeController extends Controller
     public function handleCharge(Request $request){
       // Create the charge on Stripe's servers - this will charge the user's card
       $amount = $request->amount;
+      //The user gets to keep 95% of the transaction. Stripe gets 2.9% + $0.30, I keep the rest. $$$$$
       $application_fee = ($amount - ($amount * 0.029 + 0.30) - (0.95 * $amount)) *100;
-      
+
       try {
           $user = \App\User::find($request->user_id);
-        $charge = \Stripe\Charge::create(array(
+
+        \Stripe\Charge::create(array(
           "amount" => $amount*100, // amount in cents, again
           "currency" => "usd",
           "source" => $request->token,
@@ -37,6 +39,7 @@ class StripeController extends Controller
             'user_id' => $user->id,
             'amount' => $amount
           ]);
+          event(new App\Events\ChargeSucceeded($request->email, $user));
             return response()->json(['status' => 'Payment Succeeded!']);
       } catch(\Stripe\Error\Card $e) {
         // The card has been declined
