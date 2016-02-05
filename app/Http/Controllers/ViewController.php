@@ -12,8 +12,8 @@ class ViewController extends Controller
     //
     public function getUserPage($slug){
 
-	$user = \App\User::Where('slug', '=', $slug);
-
+	$user = \App\User::Where('slug', '=', $slug)->first();
+  
 	return view('user-profile')->with(['user' => $user]);
 
     }

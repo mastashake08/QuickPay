@@ -28,6 +28,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
     //
+    Route::post('charge', 'StripeController@handleCharge');
 });
 
 Route::group(['middleware' => 'web'], function () {

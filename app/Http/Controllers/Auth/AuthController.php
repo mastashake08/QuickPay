@@ -49,9 +49,18 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
+            'address_line1' => 'required',
+            'address_city' => 'required',
+            'address_state' => 'required',
+            'address_zip' => 'required',
+            'dob_day' => 'required',
+            'dob_month' => 'required',
+            'dob_year' => 'required',
+            'stripe_token' => 'required',
         ]);
     }
 
@@ -63,12 +72,51 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'api_token' => str_random(60),
-            'slug' => str_random(10)
+
+      \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+      $account = \Stripe\Account::create(array(
+        "managed" => true,
+        "country" => "US",
+        "email" => $data['email'],
+        "legal_entity" => [
+          "dob" => [
+            "day" => $data['dob_day'],
+            "month" => $data['dob_month'],
+            "year" => $data['dob_year']
+            ],
+         "first_name" => $data['first_name'],
+         "last_name" => $data['last_name'],
+          "type" => "individual",
+          "ssn_last_4" => $data['last_4'],
+          "address" => [
+            "city" => $data['address_city'],
+            "country" => "US",
+            "line1" => $data['address_line1'],
+            "line2" => $data['address_line2'],
+            "postal_code" => $data['address_zip'],
+            "state" => $data['address_state']
+            ]
+          ],
+          "tos_acceptance" => [
+            "date" => time(),
+            "ip" => $_SERVER['REMOTE_ADDR']
+            ],
+       "external_account" => $data['stripe_token']
+      ));
+      $user = User::create([
+          'name' => $data['first_name'] .' '. $data['last_name'],
+          'email' => $data['email'],
+          'password' => bcrypt($data['password']),
+          'api_token' => str_random(60),
+          'slug' => str_random(10)
+      ]);
+
+    $stripeAccount =  \App\StripeAccount::Create([
+        'user_id' => $user->id,
+        'stripe_id'=> $account->id
         ]);
+
+
+        return $user;
     }
 }

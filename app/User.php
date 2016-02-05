@@ -27,4 +27,7 @@ class User extends Authenticatable
     public function charges() {
     return  $this->hasMany('App\Charge');
     }
+    public function stripeAccount(){
+      return $this->hasOne('App\StripeAccount');
+    }
 }
