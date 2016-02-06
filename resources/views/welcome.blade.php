@@ -7,6 +7,7 @@
 
 
 <meta property="og:title" content="{{env('APP_TITLE')}}" />
+<meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.quikpay.me" />
 <meta property="og:description" content="{{env('APP_TITLE')}} is a funding app that allows you to collect payments for your goals easily and effectively. Sign up for {{env('APP_TITLE')}} for free at https://www.quikpay.me" />
 <meta property="og:image" content="http://www.jyroneparker.com/wp-content/uploads/2016/01/charity.jpg" />

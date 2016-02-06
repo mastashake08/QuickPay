@@ -6,6 +6,7 @@
 <meta name="twitter:image" content="http://www.jyroneparker.com/wp-content/uploads/2016/01/charity.jpg" />
 
 <meta property="og:title" content="Help {{$user->name}} reach their goal!" />
+<meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.quikpay.me" />
 <meta property="og:description" content="{{$user->name}} is using {{env('APP_TITLE')}} to reach their financial goal. Help them reach it and sign up for {{env('APP_TITLE')}} for free at https://www.quikpay.me" />
 <meta property="og:image" content="http://www.jyroneparker.com/wp-content/uploads/2016/01/charity.jpg" />
