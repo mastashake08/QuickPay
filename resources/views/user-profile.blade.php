@@ -2,8 +2,13 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@mastashake08" />
 <meta name="twitter:title" content="Help {{$user->name}} reach their goal!" />
-<meta name="twitter:description" content="{{$user->name}} is using {{env('APP_TITLE')}} to reach their financial goal. Help them reach it and sign up for {{env('APP_TITLE')}} for free at https://www.quikpay.com" />
+<meta name="twitter:description" content="{{$user->name}} is using {{env('APP_TITLE')}} to reach their financial goal. Help them reach it and sign up for {{env('APP_TITLE')}} for free at https://www.quikpay.me" />
 <meta name="twitter:image" content="http://www.jyroneparker.com/wp-content/uploads/2016/01/charity.jpg" />
+
+<meta property="og:title" content="Help {{$user->name}} reach their goal!" />
+<meta property="og:url" content="https://www.quikpay.me" />
+<meta property="og:description" content="{{$user->name}} is using {{env('APP_TITLE')}} to reach their financial goal. Help them reach it and sign up for {{env('APP_TITLE')}} for free at https://www.quikpay.me" />
+<meta property="og:image" content="http://www.jyroneparker.com/wp-content/uploads/2016/01/charity.jpg" />
 @section('content')
 @if (session('success'))
     <div class="alert alert-success">
