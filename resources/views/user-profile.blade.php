@@ -1,5 +1,9 @@
 @extends('layouts.app')
-
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@jcompsolu" />
+<meta name="twitter:title" content="Help {{$user->name}} reach their goal!" />
+<meta name="twitter:description" content="{{$user->name}} is using QuikPay to reach their financial goal. Help them reach it and sign up for QuikPay for free at https://www.quikpay.com" />
+<meta name="twitter:image" content="http://www.jyroneparker.com/wp-content/uploads/2016/01/charity.jpg" />
 @section('content')
 @if (session('success'))
     <div class="alert alert-success">
@@ -49,7 +53,7 @@ $('#customButton').on('click', function(e) {
     }
   });
   handler.open({
-    name: '{{Auth::user()->name}}',
+    name: '{{$user->name}}',
     description: 'QuickPay Payment',
     amount: ans*100
   });
